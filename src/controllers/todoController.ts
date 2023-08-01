@@ -6,7 +6,7 @@ export class TodoController {
         this.todoService = todoService;
     }
 
-    getAll(request: Request, response: Response) {
-        return response.json(this.todoService.getAll());
+    async getAll(request: Request, response: Response) {
+        return response.json(await this.todoService.getAll());
     }
 }

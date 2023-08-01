@@ -1,6 +1,6 @@
 import { Todo } from "../entities/todo";
-import { v4 as uuidv4 } from 'uuid';
 import { ITodoRepository } from "../interfaces/repositories/ITodoRepository";
+import { getTodos } from "../database/PrismaClient";
 
 export class TodoRepository implements ITodoRepository {
     public static todoRepository: TodoRepository;
@@ -15,24 +15,7 @@ export class TodoRepository implements ITodoRepository {
         return TodoRepository.todoRepository;
     }
 
-    public getAll(): Todo[] {
-        return [
-            {
-                id: uuidv4(),
-                title: 'Todo 1',
-                description: 'Qualquer coisa',
-                isDone: false,
-                updatedAt: new Date(),
-                createdAt: new Date()
-            },
-            {
-                id: uuidv4(),
-                title: 'Todo 2',
-                description: 'Qualquer coisa', 
-                isDone: false,
-                updatedAt: new Date(),
-                createdAt: new Date()
-            },
-       ]
+    public async getAll(): Promise<Todo[]> {
+        return await getTodos()
     }
 }

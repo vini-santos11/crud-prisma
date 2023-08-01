@@ -8,11 +8,11 @@ export class TodoService implements ITodoService {
         this.todoRepository = todoRepository;
     }
 
-    getAll() : TodoDTO[] {
-       var result = this.todoRepository.getAll();
+    async getAll(): Promise<TodoDTO[]> {
+       var result = await this.todoRepository.getAll();
        
        // transform result to DTO
-        return result.map((todo) => new TodoDTO (todo.title, todo.description));
+        return result.map((todo) => new TodoDTO (todo.title, todo.description, todo.isDone));
     }
 }
 
