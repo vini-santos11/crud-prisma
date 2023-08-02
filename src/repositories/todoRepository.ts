@@ -1,6 +1,6 @@
 import { Todo } from "../entities/todo";
 import { ITodoRepository } from "../interfaces/repositories/ITodoRepository";
-import { getTodos } from "../database/PrismaClient";
+import { prismaClient } from "../database/prismaClient";
 
 export class TodoRepository implements ITodoRepository {
     public static todoRepository: TodoRepository;
@@ -16,6 +16,6 @@ export class TodoRepository implements ITodoRepository {
     }
 
     public async getAll(): Promise<Todo[]> {
-        return await getTodos()
+        return await prismaClient.todo.findMany();
     }
 }

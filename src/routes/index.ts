@@ -1,16 +1,8 @@
 import { Router } from "express";
-import { TodoController } from "../controllers/todoController";
-import { TodoService } from "../services/todoService";
-import { TodoRepository } from "../repositories/todoRepository";
+import { todoRoutes } from "./todo.routes";
 
 const router = Router();
 
-const todoRepository = TodoRepository.getInstance();
-
-const todoController = new TodoController(new TodoService(todoRepository));
-
-router.get("/", (request, response) => {
-    todoController.getAll(request, response);
-});
+router.use("/todos", todoRoutes);
 
 export default router;
