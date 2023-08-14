@@ -32,4 +32,21 @@ export class TodoRepository implements ITodoRepository {
             data: todo
         })
     }
+
+    public async update(todo: Todo): Promise<Todo | null> {
+        return await prismaClient.todo.update({
+            where: {
+                id: todo.id
+            },
+            data: todo
+        });
+    }
+
+    public async delete(id: string): Promise<void> {
+        await prismaClient.todo.delete({
+            where: {
+                id
+            }
+        });
+    }
 }

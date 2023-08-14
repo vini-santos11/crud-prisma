@@ -8,10 +8,10 @@ type Todo = {
 }
 
 export class TodoDTO {
+    public id?: string;
     public title: string;
     public description: string | undefined | null;
     public isDone?: boolean;
-    public id?: string;
     public updatedAt?: Date;
     public createdAt?: Date;
 

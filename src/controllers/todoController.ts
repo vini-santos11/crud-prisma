@@ -11,7 +11,15 @@ export class TodoController {
     async getById(request: Request, response: Response) {
         const { id } = request.params;
 
-        return response.json(await this.todoService.getById(id));
+        const todo = await this.todoService.getById(id);
+
+        if (!todo) {
+            return response.status(404).json({
+                message: 'Todo not found'
+            });
+        }
+
+        return response.json(todo);
     }
 
     async create(request: Request, response: Response) {
@@ -26,5 +34,28 @@ export class TodoController {
         return response.status(201).json(await this.todoService.create({
             title, description
         }));
+    }
+
+    async update(request: Request, response: Response) {
+        const { id } = request.params;
+        const { title, description } = request.body;
+
+        if (!title) {
+            return response.status(400).json({
+                message: 'Title is required'
+            });
+        }
+
+        return response.json(await this.todoService.update({
+            id, title, description
+        }));
+    }
+
+    async delete(request: Request, response: Response) {
+        const { id } = request.params;
+
+        await this.todoService.delete(id);
+
+        return response.status(204).send();
     }
 }

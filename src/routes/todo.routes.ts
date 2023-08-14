@@ -15,4 +15,8 @@ todoRoutes.get("/:id", (request: Request, response: Response) => todoController.
 
 todoRoutes.post("/", (request: Request, response: Response) => todoController.create(request, response));
 
+todoRoutes.put("/:id", (request: Request, response: Response) => todoController.update(request, response));
+
+todoRoutes.delete("/:id", (request: Request, response: Response) => todoController.delete(request, response));
+
 export { todoRoutes }
