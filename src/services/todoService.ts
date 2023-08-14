@@ -13,13 +13,23 @@ export class TodoService implements ITodoService {
        var result = await this.todoRepository.getAll();
        
        // transform result to DTO
-        return result.map((todo) => new TodoDTO (todo.title, todo.description));
+        return result.map((todo) => new TodoDTO(todo));
+    }
+
+    async getById(id: string): Promise<TodoDTO | null> {
+        var result = await this.todoRepository.getById(id);
+        
+        if (!result) {
+            return null;
+        }
+
+        return new TodoDTO(result);
     }
 
     async create(todo: Todo): Promise<TodoDTO> {
         var result = await this.todoRepository.create(todo);
 
-        return new TodoDTO (result.title, result.description);
+        return new TodoDTO(result);
     }
 }
 

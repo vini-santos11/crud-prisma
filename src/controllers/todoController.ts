@@ -8,6 +8,12 @@ export class TodoController {
         return response.json(await this.todoService.getAll());
     }
 
+    async getById(request: Request, response: Response) {
+        const { id } = request.params;
+
+        return response.json(await this.todoService.getById(id));
+    }
+
     async create(request: Request, response: Response) {
         const { title, description } = request.body;
 

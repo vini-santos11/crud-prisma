@@ -1,4 +1,11 @@
-import {v4 as uuidv4} from 'uuid';
+type Todo = {
+    id: string,
+    title: string,
+    description: string | undefined | null,
+    isDone: boolean,
+    updatedAt: Date,
+    createdAt: Date
+}
 
 export class TodoDTO {
     public title: string;
@@ -8,12 +15,12 @@ export class TodoDTO {
     public updatedAt?: Date;
     public createdAt?: Date;
 
-    constructor(title: string, description: string | undefined | null) {
-        this.id = uuidv4();
-        this.title = title;
-        this.description = description;
-        this.isDone = false;
-        this.updatedAt = new Date(),
-        this.createdAt = new Date()
+    constructor(todo: Todo){
+        this.id = todo.id
+        this.title = todo.title;
+        this.description = todo.description;
+        this.isDone = todo.isDone;
+        this.updatedAt = todo.updatedAt,
+        this.createdAt = todo.createdAt
     }
 }
