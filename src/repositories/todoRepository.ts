@@ -49,4 +49,26 @@ export class TodoRepository implements ITodoRepository {
             }
         });
     }
+
+    public async markAsDone(id: string): Promise<Todo | null> {
+        return await prismaClient.todo.update({
+            where: {
+                id
+            },
+            data: {
+                isDone: true
+            }
+        });
+    }
+
+    public async markAsUndone(id: string): Promise<Todo | null> {
+        return await prismaClient.todo.update({
+            where: {
+                id
+            },
+            data: {
+                isDone: false
+            }
+        });
+    }
 }

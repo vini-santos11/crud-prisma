@@ -19,4 +19,8 @@ todoRoutes.put("/:id", (request: Request, response: Response) => todoController.
 
 todoRoutes.delete("/:id", (request: Request, response: Response) => todoController.delete(request, response));
 
+todoRoutes.patch("/:id/done", (request: Request, response: Response) => todoController.markAsDone(request, response));
+
+todoRoutes.patch("/:id/undone", (request: Request, response: Response) => todoController.markAsUndone(request, response));
+
 export { todoRoutes }

@@ -6,4 +6,6 @@ export interface ITodoService {
     create(todo: TodoDTO): Promise<TodoDTO>;
     update(todo: TodoDTO): Promise<TodoDTO | null>;
     delete(id: string): Promise<void>;
+    markAsDone(id: string): Promise<TodoDTO | null>;
+    markAsUndone(id: string): Promise<TodoDTO | null>;
 }

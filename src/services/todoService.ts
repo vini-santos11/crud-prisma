@@ -45,5 +45,25 @@ export class TodoService implements ITodoService {
     async delete(id: string): Promise<void> {
         await this.todoRepository.delete(id);
     }
+
+    async markAsDone(id: string): Promise<TodoDTO | null> {
+        var result = await this.todoRepository.markAsDone(id);
+
+        if (!result) {
+            return null;
+        }
+
+        return new TodoDTO(result);
+    }
+
+    async markAsUndone(id: string): Promise<TodoDTO | null> {
+        var result = await this.todoRepository.markAsUndone(id);
+
+        if (!result) {
+            return null;
+        }
+
+        return new TodoDTO(result);
+    }
 }
 

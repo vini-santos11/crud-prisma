@@ -58,4 +58,32 @@ export class TodoController {
 
         return response.status(204).send();
     }
+
+    async markAsDone(request: Request, response: Response) {
+        const { id } = request.params;
+
+        const todo = await this.todoService.markAsDone(id);
+
+        if (!todo) {
+            return response.status(404).json({
+                message: 'Todo not found'
+            });
+        }
+
+        return response.json(todo);
+    }
+
+    async markAsUndone(request: Request, response: Response) {
+        const { id } = request.params;
+
+        const todo = await this.todoService.markAsUndone(id);
+
+        if (!todo) {
+            return response.status(404).json({
+                message: 'Todo not found'
+            });
+        }
+
+        return response.json(todo);
+    }
 }

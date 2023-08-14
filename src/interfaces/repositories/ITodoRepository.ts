@@ -6,4 +6,6 @@ export interface ITodoRepository {
     create(todo: Todo): Promise<Todo>;
     update(todo: Todo): Promise<Todo | null>;
     delete(id: string): Promise<void>;
+    markAsDone(id: string): Promise<Todo | null>;
+    markAsUndone(id: string): Promise<Todo | null>;
 }
