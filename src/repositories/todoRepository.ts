@@ -18,4 +18,10 @@ export class TodoRepository implements ITodoRepository {
     public async getAll(): Promise<Todo[]> {
         return await prismaClient.todo.findMany();
     }
+
+    public async create(todo: Todo): Promise<Todo> {
+        return await prismaClient.todo.create({
+            data: todo
+        })
+    }
 }
