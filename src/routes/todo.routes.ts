@@ -11,4 +11,6 @@ const todoController = new TodoController(new TodoService(todoRepository));
 
 todoRoutes.get("/", (request: Request, response: Response) => todoController.getAll(request, response));
 
+todoRoutes.post("/", (request: Request, response: Response) => todoController.create(request, response));
+
 export { todoRoutes }
